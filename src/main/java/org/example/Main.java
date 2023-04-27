@@ -1,29 +1,26 @@
 package org.example;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args)  {
-        try {
-            Connection connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/employee","root","l0G9IjqGzqZtZSOx");
-            Statement statement=connection.createStatement();
 
-            ResultSet resultSet=statement.executeQuery("SELECT * FROM employee");
-            ResultSetMetaData metaData=resultSet.getMetaData();
+        Scanner scanner=new Scanner(System.in);
+        Employee employee=new Employee();
+        employee.deleteEmployee(4);
+        /**System.out.println("entrer le nom de l'employee: ");
+        String name=scanner.nextLine();
+        System.out.println("entrer le prenom de l'employee: ");
+        String last=scanner.nextLine();
+        System.out.println("entrer l'adresee email : ");
+        String email=scanner.nextLine();
+        Employee employeeAded=new Employee(name,last,email);
+        employee.addEmployee(employeeAded);**/
 
-            System.out.println("----------------liste des employees------------------------");
-            while (resultSet.next()){
-                  System.out.println("Nom de l'employee: "+resultSet.getString("first_name"));
-                  System.out.println("prenom de l'employee: "+resultSet.getString("first_name"));
-                  System.out.println("Adresse mail: "+resultSet.getString("email"));
-                  System.out.println("--------------------------------------------------------");
-
-            }
-            resultSet.close();
-            statement.close();
-
-        }catch (SQLException e){
-             System.out.println(e);
+        for (Employee empl:employee.getlistOfEmployees()) {
+            empl.displayEmployee();
+            System.out.println("----------------------------");
         }
     }
 }
