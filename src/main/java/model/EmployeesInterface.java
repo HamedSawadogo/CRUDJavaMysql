@@ -1,5 +1,6 @@
-package org.example;
+package model;
 
+import model.Employee;
 import java.util.List;
 
 public interface EmployeesInterface {
