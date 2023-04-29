@@ -29,7 +29,7 @@ public class EmployeeController implements EmployeesInterface {
     }
     public  void displayEmployees(){
         this.employeeVew.displaysEmployees();
-    }
+   }
     public  void runn(){
         Scanner scanner=new Scanner(System.in);
         this.employeeVew.menu();
@@ -55,50 +55,36 @@ public class EmployeeController implements EmployeesInterface {
                     break;
             }
         }
-
-
     @Override
-    public void addEmployee(Employee employee) {
+    public void addEmployee(Employee employee) throws SQLException {
         String query="INSERT INTO employee(email,first_name,last_name) VALUES(?,?,?)";
-        try {
             PreparedStatement statement=this.connection.prepareStatement(query);
             statement.setString(1,employee.getEmail());
             statement.setString(2,employee.getFirstName());
             statement.setString(3,employee.getLastName());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(int id) throws SQLException {
         String query="DELETE FROM employee WHERE id="+id;
-        try {
-            PreparedStatement statement=this.connection.prepareStatement(query);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        PreparedStatement statement=this.connection.prepareStatement(query);
+        statement.executeUpdate();
     }
     @Override
-    public void updateEmployee(Employee employee, int id) {
+    public void updateEmployee(Employee employee, int id) throws SQLException {
         String sql="UPDATE employee SET first_name=?,last_name=?,email=? WHERE id=?";
-        try {
-            PreparedStatement statement=this.connection.prepareStatement(sql);
-            statement.setString(1,employee.getFirstName());
-            statement.setString(2,employee.getLastName());
-            statement.setString(3,employee.getEmail());
-            statement.setInt(4,id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        PreparedStatement statement=this.connection.prepareStatement(sql);
+        statement.setString(1,employee.getFirstName());
+        statement.setString(2,employee.getLastName());
+        statement.setString(3,employee.getEmail());
+        statement.setInt(4,id);
+        statement.executeUpdate();
     }
     @Override
-    public List<Employee> getlistOfEmployees() {
+    public List<Employee> getlistOfEmployees() throws SQLException {
         String query="SELECT * FROM employee";
         List<Employee>listOfEmployees=new ArrayList<>();
-        try {
             PreparedStatement statement=this.connection.prepareStatement(query);
             ResultSet resultSet=statement.executeQuery();
             while (resultSet.next()){
@@ -111,8 +97,6 @@ public class EmployeeController implements EmployeesInterface {
             statement.close();
             resultSet.close();
             return  listOfEmployees;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -13,7 +13,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9ab76128-6892-47ac-897b-3f12e01c7c6c">
-      <console name="Connection" type="STANDARD" schema="ITG3" session="Main"><![CDATA[select  * from FILM;]]></console>
+      <console name="Connection" type="STANDARD" schema="ITG3" session="Main"><![CDATA[SELECT DISTINCT  nom 
+FROM CINEMA c,PROJECTION p,FILM f
+WHERE p.NUM_CINEMA=c.NUM_CINEMA
+AND p.NUM_FILM=ALL(SELECT num_film FROM FILM)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

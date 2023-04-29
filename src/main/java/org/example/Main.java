@@ -1,16 +1,10 @@
 package org.example;
 
-import controllers.EmployeeController;
-import model.Employee;
-import vews.EmployeeVew;
-
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args)  {
 
-        EmployeeController employeeController=new EmployeeController(new EmployeeVew());
-        employeeController.runn();
+        //EmployeeController employeeController=new EmployeeController(new EmployeeVew());
+        //employeeController.runn();
         //Employee testEmpl=new Employee("sawadogo","pik","pink@gmail.com");
         //employee.updateEmployee(testEmpl,3);
         /**System.out.println("entrer le nom de l'employee: ");

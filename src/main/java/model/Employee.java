@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee{
-
     private  int id;
     private String email;
     private  String firstName;
     private  String lastName;
     private Connection connection= DatabaseConnection.getInstance();
-    public  Employee(){}
 
+    public  Employee(){}
     public  Employee(String firstNamename,String lastName,String email){
         this.email=email;
         this.firstName=firstNamename;
@@ -24,7 +23,6 @@ public class Employee{
         this.lastName=lastName;
         this.id=id;
     }
-
     //getters and setters
     public String getEmail() {
         return email;

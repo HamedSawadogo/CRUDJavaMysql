@@ -4,6 +4,7 @@ import controllers.EmployeeController;
 import model.Employee;
 
 import javax.swing.plaf.PanelUI;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class EmployeeVew {
@@ -27,17 +28,29 @@ public class EmployeeVew {
         String lastName=this.scanner.next();
         System.out.print("entrer l'adresse mail de l'employee: ");
         String email=this.scanner.next();
-        this.employeeController.addEmployee(new Employee(name,lastName,email));
+        try {
+            this.employeeController.addEmployee(new Employee(name,lastName,email));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void displaysEmployees(){
-        for (Employee employee:this.employeeController.getlistOfEmployees()) {
-            displayEmployee(employee);
+        try {
+            for (Employee employee:this.employeeController.getlistOfEmployees()) {
+                displayEmployee(employee);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
     public  void deleteEmployee(){
         System.out.println("enter le code a supprimer:  ");
         int code=scanner.nextInt();
-        employeeController.deleteEmployee(code);
+        try {
+            employeeController.deleteEmployee(code);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     private   void displayEmployee(Employee employee){
              System.out.println("Nom de l'employee: "+employee.getFirstName());
